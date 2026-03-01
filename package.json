@@ -13,6 +13,7 @@
     "format:write": "prettier --write ."
   },
   "devDependencies": {
+    "@types/node": "^25.3.2",
     "@typescript-eslint/eslint-plugin": "^8.25.0",
     "@typescript-eslint/parser": "^8.25.0",
     "eslint": "^8.57.1",
