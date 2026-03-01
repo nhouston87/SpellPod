@@ -53,3 +53,4 @@ Apply to branch: `main`
    - Block force pushes
 4. Required status checks:
    - `CI / validate` (from `.github/workflows/ci.yml`)
+   
