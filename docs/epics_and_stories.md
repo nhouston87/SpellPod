@@ -26,6 +26,7 @@
 - Acceptance Criteria:
   - PR pipeline runs install, lint, typecheck, and tests.
   - Main branch requires passing checks.
+  - Main branch protection is configured to require passing CI checks.
 
 ## Epic 2: Authentication and User Profiles
 ### Story 2.1: Firebase Auth integration

@@ -39,3 +39,17 @@ Recommended for `main`:
 - Require status checks to pass
 - Block force pushes
 - Require linear history (optional)
+
+## Required Branch Protection (GitHub)
+
+Apply to branch: `main`
+
+1. Go to: `Settings -> Branches -> Branch protection rules -> Add rule`
+2. Branch name pattern: `main`
+3. Enable:
+   - Require a pull request before merging
+   - Require status checks to pass before merging
+   - Require branches to be up to date before merging
+   - Block force pushes
+4. Required status checks:
+   - `CI / validate` (from `.github/workflows/ci.yml`)
