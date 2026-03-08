@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../auth/AuthContext.js';
+import { apiGet } from '../api/client.js';
+import { apiRoutes } from '../api/routes.js';
 import { env } from '../env.js';
 
 type MeResponse = { uid: string | null; email: string | null };
@@ -15,7 +17,7 @@ export function AppPage() {
 
       try {
         const token = await user.getIdToken();
-        const resp = await fetch(`${env.VITE_API_BASE_URL}/me`, {
+        const resp = await fetch(`${env.VITE_API_BASE_URL}/auth/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -25,7 +27,7 @@ export function AppPage() {
           throw new Error(`API /me failed (${resp.status})`);
         }
 
-        const data = (await resp.json()) as MeResponse;
+        const data = await apiGet<MeResponse>(apiRoutes.authMe, { token });
         setMe(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Unknown error');
