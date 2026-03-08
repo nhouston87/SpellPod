@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext.js';
+import { useAuth } from './AuthContext.js';
 
 export function LoginPage() {
   const { user, signInWithGoogle, isLoading } = useAuth();
