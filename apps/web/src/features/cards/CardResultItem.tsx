@@ -39,3 +39,4 @@ export function CardResultItem({ card }: CardResultItemProps) {
     </li>
   );
 }
+
