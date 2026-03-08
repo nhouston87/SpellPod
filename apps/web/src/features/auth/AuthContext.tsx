@@ -12,7 +12,7 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { auth, googleProvider } from '../firebase.js';
+import { auth, googleProvider } from '../../firebase.js';
 import { ensureUserProfile } from '../profile/ensureUserProfile.js';
 
 type AuthContextValue = {

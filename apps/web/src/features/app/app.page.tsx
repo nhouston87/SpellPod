@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext.js';
-import { apiGet } from '../api/client.js';
-import { apiRoutes } from '../api/routes.js';
-import { env } from '../env.js';
+import { apiGet } from '../../api/client.js';
+import { apiRoutes } from '../../api/routes.js';
+import { env } from '../../env.js';
 
 type MeResponse = { uid: string | null; email: string | null };
 

@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { RequireAuth } from './auth/RequireAuth.js';
-import { AppPage } from './pages/AppPage.js';
-import { LoginPage } from './pages/LoginPage.js';
-import { SearchPage } from './pages/SearchPage.js';
+import { RequireAuth } from './features/auth/RequireAuth.js';
+import { AppPage } from './features/app/app.page.js';
+import { LoginPage } from './features/auth/login.page.js';
+import { SearchPage } from './features/cards/search.page.js';
 
 export function App() {
   return (

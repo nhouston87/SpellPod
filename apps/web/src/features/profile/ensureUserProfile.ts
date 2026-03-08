@@ -6,7 +6,7 @@ import {
   setDoc,
   updateDoc,
 } from 'firebase/firestore';
-import { db } from '../firebase.js';
+import { db } from '../../firebase.js';
 
 export async function ensureUserProfile(user: User): Promise<void> {
   const userRef = doc(db, 'users', user.uid);
