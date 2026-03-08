@@ -13,6 +13,7 @@ import {
   type ReactNode,
 } from 'react';
 import { auth, googleProvider } from '../firebase.js';
+import { ensureUserProfile } from '../profile/ensureUserProfile.js';
 
 type AuthContextValue = {
   user: User | null;
@@ -28,12 +29,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (nextUser) => {
-      setUser(nextUser);
-      setIsLoading(false);
+    const unsub = onAuthStateChanged(auth, async (nextUser) => {
+      try {
+        if (nextUser) {
+          await ensureUserProfile(nextUser);
+        }
+        setUser(nextUser);
+      } catch (error) {
+        console.error('Failed to bootstrap user profile', error);
+        setUser(nextUser);
+      } finally {
+        setIsLoading(false);
+      }
     });
 
     return () => unsub();
+    
   }, []);
 
   const value = useMemo<AuthContextValue>(
