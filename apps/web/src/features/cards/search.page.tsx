@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { apiGet } from '../../api/client.js';
 import { apiRoutes } from '../../api/routes.js';
+import { CardResultItem } from './CardResultItem.js';
 
 type SearchContext = 'global' | 'collection';
 
@@ -153,42 +154,10 @@ export function SearchPage() {
 
           <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gap: '1rem' }}>
             {results.map((card) => (
-              <li
-                key={card.id}
-                style={{ border: '1px solid #ddd', borderRadius: 8, padding: '0.75rem' }}
-              >
-                <div style={{ display: 'flex', gap: '1rem' }}>
-                  {card.imageSmall ? (
-                    <img src={card.imageSmall} alt={card.name} width={146} height={204} />
-                  ) : (
-                    <div
-                      style={{
-                        width: 146,
-                        height: 204,
-                        border: '1px dashed #999',
-                        display: 'grid',
-                        placeItems: 'center',
-                        fontSize: 12,
-                        color: '#666',
-                      }}
-                    >
-                      No image
-                    </div>
-                  )}
-
-                  <div>
-                    <h2 style={{ margin: '0 0 0.25rem' }}>
-                      {card.name} {card.manaCost ? <span>({card.manaCost})</span> : null}
-                    </h2>
-                    <p style={{ margin: '0 0 0.5rem' }}>{card.typeLine ?? 'Unknown type'}</p>
-                    <p style={{ margin: 0, whiteSpace: 'pre-wrap' }}>
-                      {card.oracleText ? card.oracleText.slice(0, 280) : 'No oracle text'}
-                    </p>
-                  </div>
-                </div>
-              </li>
+              <CardResultItem key={card.id} card={card} />
             ))}
           </ul>
+
 
           {nextPage ? (
             <p style={{ marginTop: '1rem' }}>
