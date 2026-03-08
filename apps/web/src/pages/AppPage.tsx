@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext.js';
 import { apiGet } from '../api/client.js';
 import { apiRoutes } from '../api/routes.js';
@@ -40,6 +41,9 @@ export function AppPage() {
   return (
     <main style={{ fontFamily: 'sans-serif', padding: '1rem' }}>
       <h1>SpellPod App</h1>
+      <p>
+        <Link to="/cards">Go To Global Card Search</Link>
+      </p>
       <p>Signed in as: {user?.email ?? user?.uid}</p>
       <button type="button" onClick={signOutUser}>
         Sign out
