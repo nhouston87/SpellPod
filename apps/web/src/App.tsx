@@ -1,31 +1,21 @@
-import { useAuth } from './auth/AuthContext.js';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { RequireAuth } from './auth/RequireAuth.js';
+import { AppPage } from './pages/AppPage.js';
+import { LoginPage } from './pages/LoginPage.js';
 
 export function App() {
-  const { user, isLoading, signInWithGoogle, signOutUser } = useAuth();
-
-  if (isLoading) {
-    return <p>Checking session...</p>;
-  }
-
   return (
-    <main style={{ fontFamily: 'sans-serif', padding: '1rem' }}>
-      <h1>SpellPod</h1>
-
-      {user ? (
-        <>
-          <p>Signed in as: {user.email ?? user.uid}</p>
-          <button type="button" onClick={signOutUser}>
-            Sign out
-          </button>
-        </>
-      ) : (
-        <>
-          <p>You are signed out.</p>
-          <button type="button" onClick={signInWithGoogle}>
-            Sign in with Google
-          </button>
-        </>
-      )}
-    </main>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route
+        path="/app"
+        element={
+          <RequireAuth>
+            <AppPage />
+          </RequireAuth>
+        }
+      />
+      <Route path="*" element={<Navigate to="/app" replace />} />
+    </Routes>
   );
 }
