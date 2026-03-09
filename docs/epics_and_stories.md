@@ -192,6 +192,43 @@
   - Runtime secrets loaded from managed secret store.
   - Rotation process documented.
 
+## Epic 11: Design System Foundation (MVP Standard)
+### Story D1: Brand direction and theme tokens
+- Acceptance Criteria:
+  - Brand direction is documented as `Arcane Tactical` with clean/minimal UX constraints.
+  - Semantic theme tokens are defined for both light and dark themes.
+  - Light mode is default.
+  - Typography pair and type scale are documented.
+  - Design constraints are documented to avoid visual clutter and excessive effects.
+
+### Story D2: Theme infrastructure (light/dark + persistence)
+- Acceptance Criteria:
+  - App supports light and dark themes via semantic CSS variables.
+  - Default theme is light.
+  - User can toggle theme in UI.
+  - Theme preference persists via `localStorage`.
+  - Theme is applied on app boot without a visible flash of wrong theme.
+  - Feature pages use semantic tokens instead of hardcoded raw colors.
+
+### Story D3: App shell layout baseline
+- Acceptance Criteria:
+  - Shared shell layout exists (header + content container).
+  - Current feature pages (login, app, cards search) are migrated to use the shell.
+  - Spacing, max-width, and content rhythm are standardized.
+
+### Story D4: Core UI primitives
+- Acceptance Criteria:
+  - Reusable primitives are implemented: `Button`, `Input`, `Select`, `Card`, `Badge`, `EmptyState`, `Loader`.
+  - Current auth and cards pages are migrated to primitives.
+  - Variant rules are documented (for example `primary`, `secondary`, `danger`, `ghost`).
+
+### Story D5: Accessibility and UX baseline
+- Acceptance Criteria:
+  - Keyboard focus states are visible and consistent across interactive elements.
+  - Color contrast meets baseline readability in both light and dark themes.
+  - Form error/help messaging pattern is standardized.
+  - Accessibility checklist is added to PR review guidance.
+
 ## Future Epics (Post-MVP)
 - Real-time multiplayer service (WebSockets)
 - In-browser video play experience
