@@ -4,6 +4,12 @@ import { useAuth } from '../auth/AuthContext.js';
 import { apiGet } from '../../api/client.js';
 import { apiRoutes } from '../../api/routes.js';
 import { env } from '../../env.js';
+import {
+  applyTheme,
+  getStoredTheme,
+  setStoredTheme,
+  type ThemeMode,
+} from '../../lib/theme.js';
 
 type MeResponse = { uid: string | null; email: string | null };
 
@@ -11,6 +17,14 @@ export function AppPage() {
   const { user, signOutUser } = useAuth();
   const [me, setMe] = useState<MeResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [theme, setTheme] = useState<ThemeMode>(getStoredTheme() ?? 'light');
+
+  function onToggleTheme() {
+    const next: ThemeMode = theme === 'light' ? 'dark' : 'light';
+    setTheme(next);
+    applyTheme(next);
+    setStoredTheme(next);
+  }
 
   useEffect(() => {
     async function run() {
@@ -40,7 +54,15 @@ export function AppPage() {
 
   return (
     <main style={{ fontFamily: 'sans-serif', padding: '1rem' }}>
-      <h1>SpellPod App</h1>
+
+      <h1>
+        SpellPod App 
+        <span>
+          <button type="button" onClick={onToggleTheme}>
+            Theme: {theme}
+          </button>
+        </span>
+      </h1>
       <p>
         <Link to="/cards">Go To Global Card Search</Link>
       </p>
