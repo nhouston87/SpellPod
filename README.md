@@ -24,3 +24,7 @@ From repo root:
 cp .env.example .env.local
 cp apps/web/.env.example apps/web/.env.local
 cp apps/api/.env.example apps/api/.env.local
+
+Design docs live in:
+docs/design/brand.md
+docs/design/tokens.md
